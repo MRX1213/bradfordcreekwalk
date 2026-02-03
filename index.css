@@ -127,6 +127,40 @@ body {
     background-color: #F07A55;
 }
 
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.hamburger-menu span {
+    width: 100%;
+    height: 3px;
+    background-color: #1A3A1C;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
 /* Hero Section */
 .hero-section {
     position: relative;
@@ -1264,6 +1298,13 @@ body {
     margin: 0;
 }
 
+.audio-time {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0.5rem 0 0 0;
+    text-align: center;
+}
+
 /* Transcription */
 .transcription-content {
     background-color: white;
@@ -1345,9 +1386,73 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+    }
+
     .main-nav {
-        gap: 1rem;
-        font-size: 0.875rem;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5rem 2rem 2rem;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+        gap: 0;
+    }
+
+    .main-nav.active {
+        right: 0;
+    }
+
+    .main-nav::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+    }
+
+
+    .main-nav .nav-link {
+        width: 100%;
+        padding: 1rem 0;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 1rem;
+    }
+
+    .main-nav .nav-link.active::after {
+        display: none;
+    }
+
+    .main-nav .nav-link.active {
+        color: #F07A55;
+        font-weight: 600;
+    }
+
+    /* Mobile menu overlay */
+    body.menu-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        pointer-events: all;
     }
 
     .hero-title {

@@ -25,6 +25,11 @@
                 <a href="about.html" class="nav-link">About Us</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
+            <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
@@ -95,7 +100,7 @@
                 <div class="footer-column">
                     <h4>CONNECT</h4>
                     <p>Bradford, Pennsylvania</p>
-                    <p><a href="mailto:info@bradfordcreekwalk.org">info@bradfordcreekwalk.org</a></p>
+                    <p><a href="mailto:nam426@pitt.edu">nam426@pitt.edu</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -106,6 +111,69 @@
 
     <script src="index.js"></script>
     <script>
+        // Audio player functions
+        function toggleAudio(markerNumber) {
+            const audio = document.getElementById(`audio-${markerNumber}`);
+            const playBtn = document.getElementById(`play-btn-${markerNumber}`);
+            const playIcon = document.getElementById(`play-icon-${markerNumber}`);
+            const pauseIcon = document.getElementById(`pause-icon-${markerNumber}`);
+            const progress = document.getElementById(`progress-${markerNumber}`);
+            const timeDisplay = document.getElementById(`time-${markerNumber}`);
+            
+            // Stop all other audio players
+            document.querySelectorAll('audio').forEach(a => {
+                if (a.id !== `audio-${markerNumber}` && !a.paused) {
+                    a.pause();
+                    a.currentTime = 0;
+                    const otherMarkerNum = a.id.replace('audio-', '');
+                    const otherPlayIcon = document.getElementById(`play-icon-${otherMarkerNum}`);
+                    const otherPauseIcon = document.getElementById(`pause-icon-${otherMarkerNum}`);
+                    if (otherPlayIcon) otherPlayIcon.style.display = 'block';
+                    if (otherPauseIcon) otherPauseIcon.style.display = 'none';
+                }
+            });
+            
+            if (audio.paused) {
+                audio.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+                
+                // Initialize time display
+                audio.addEventListener('loadedmetadata', function() {
+                    const totalMins = Math.floor(audio.duration / 60);
+                    const totalSecs = Math.floor(audio.duration % 60);
+                    timeDisplay.textContent = `0:00 / ${totalMins}:${totalSecs.toString().padStart(2, '0')}`;
+                });
+                
+                // Update progress bar and time
+                audio.addEventListener('timeupdate', function() {
+                    if (audio.duration) {
+                        const percent = (audio.currentTime / audio.duration) * 100;
+                        progress.style.width = percent + '%';
+                        
+                        const currentMins = Math.floor(audio.currentTime / 60);
+                        const currentSecs = Math.floor(audio.currentTime % 60);
+                        const totalMins = Math.floor(audio.duration / 60);
+                        const totalSecs = Math.floor(audio.duration % 60);
+                        timeDisplay.textContent = `${currentMins}:${currentSecs.toString().padStart(2, '0')} / ${totalMins}:${totalSecs.toString().padStart(2, '0')}`;
+                    }
+                });
+                
+                // Reset when audio ends
+                audio.addEventListener('ended', function() {
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
+                    progress.style.width = '0%';
+                    audio.currentTime = 0;
+                    timeDisplay.textContent = `0:00 / ${Math.floor(audio.duration / 60)}:${Math.floor(audio.duration % 60).toString().padStart(2, '0')}`;
+                });
+            } else {
+                audio.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
+        
         // Load historical markers
         document.addEventListener('DOMContentLoaded', function() {
             const markers = getHistoricalMarkers();
@@ -163,17 +231,36 @@
                                 <h4 class="marker-section-title">Audio Guide</h4>
                             </div>
                             <div class="audio-player-placeholder">
-                                <div class="audio-controls">
-                                    <div class="audio-play-button">
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <polygon points="8 5 8 19 16 12 8 5" fill="white"/>
-                                        </svg>
+                                ${marker.number === 2 ? `
+                                    <audio id="audio-${marker.number}" src="audio/card2.mp3"></audio>
+                                    <div class="audio-controls">
+                                        <div class="audio-play-button" onclick="toggleAudio(${marker.number})" id="play-btn-${marker.number}">
+                                            <svg id="play-icon-${marker.number}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <polygon points="8 5 8 19 16 12 8 5" fill="white"/>
+                                            </svg>
+                                            <svg id="pause-icon-${marker.number}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                                <rect x="6" y="4" width="4" height="16" fill="white"/>
+                                                <rect x="14" y="4" width="4" height="16" fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <div class="audio-progress-bar">
+                                            <div class="audio-progress" id="progress-${marker.number}"></div>
+                                        </div>
                                     </div>
-                                    <div class="audio-progress-bar">
-                                        <div class="audio-progress"></div>
+                                    <p class="audio-time" id="time-${marker.number}">0:00 / 0:00</p>
+                                ` : `
+                                    <div class="audio-controls">
+                                        <div class="audio-play-button">
+                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <polygon points="8 5 8 19 16 12 8 5" fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <div class="audio-progress-bar">
+                                            <div class="audio-progress"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <p class="audio-coming-soon">Audio guide coming soon</p>
+                                    <p class="audio-coming-soon">Audio guide coming soon</p>
+                                `}
                             </div>
                         </div>
                         

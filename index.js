@@ -167,4 +167,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Hamburger menu functionality
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mainNav = document.querySelector('.main-nav');
+    
+    if (hamburgerBtn && mainNav) {
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        }
+        
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking on a nav link
+        const navLinks = mainNav.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburgerBtn.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        // Close menu when clicking on overlay
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = mainNav.contains(event.target);
+            const isClickOnHamburger = hamburgerBtn.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnHamburger && mainNav.classList.contains('active')) {
+                hamburgerBtn.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    }
 });
