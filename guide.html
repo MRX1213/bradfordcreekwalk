@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bradford Creekwalk - The History</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <img src="images/PineTree.png" alt="Bradford Creekwalk Logo" class="tree-icon">
+                </div>
+                <a href="index.html" class="logo-text">
+                    <span class="logo-bradford">Bradford</span>
+                    <span class="logo-creekwalk">Creekwalk</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="guide.html" class="nav-link active">The History</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- History Hero Section -->
+        <section class="history-hero">
+            <div class="history-hero-background"></div>
+            <div class="history-hero-content">
+                <button class="marker-count-btn">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: 20px; margin-right: 8px;">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+                        <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" fill="none"/>
+                        <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" fill="none"/>
+                    </svg>
+                    18 Historical Markers
+                </button>
+                <h1 class="history-title">
+                    <span class="history-title-prefix">The History of</span>
+                    <span class="history-title-main">Bradford</span>
+                </h1>
+                <p class="history-subtitle">Journey through time with 19 carefully curated moments that shaped our community, from the first settlement to the vibrant town we know today.</p>
+                <div class="history-search">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" placeholder="Search by title or year..." id="historySearch" class="search-input">
+                </div>
+            </div>
+        </section>
+
+        <!-- History Timeline -->
+        <section class="history-timeline">
+            <div class="container">
+                <p class="timeline-count" id="timelineCount">Showing 18 of 18 historical markers</p>
+                <div class="markers-list" id="markersList">
+                    <!-- Markers will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <img src="images/PineTree.png" alt="Bradford Creekwalk Logo" class="tree-icon">
+                        </div>
+                        <div class="footer-logo-text">
+                            <span class="footer-bradford">Bradford</span>
+                            <span class="footer-creekwalk">Creekwalk</span>
+                        </div>
+                    </div>
+                    <p class="footer-mission">A museum without walls, connecting our community through history, nature, and shared experiences.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>EXPLORE</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="guide.html">The History</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>CONNECT</h4>
+                    <p>Bradford, Pennsylvania</p>
+                    <p><a href="mailto:info@bradfordcreekwalk.org">info@bradfordcreekwalk.org</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bradford Creekwalk. A non-profit community project.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+    <script>
+        // Load historical markers
+        document.addEventListener('DOMContentLoaded', function() {
+            const markers = getHistoricalMarkers();
+            const markersList = document.getElementById('markersList');
+            const searchInput = document.getElementById('historySearch');
+            const timelineCount = document.getElementById('timelineCount');
+            
+            function displayMarkers(filteredMarkers) {
+                markersList.innerHTML = '';
+                timelineCount.textContent = `Showing ${filteredMarkers.length} of ${markers.length} historical markers`;
+                
+                filteredMarkers.forEach(marker => {
+                    const markerCard = document.createElement('div');
+                    markerCard.className = 'marker-card';
+                    
+                    const markerHeader = document.createElement('div');
+                    markerHeader.className = 'marker-header';
+                    markerHeader.onclick = () => {
+                        // Close all other expanded cards
+                        const allCards = document.querySelectorAll('.marker-card');
+                        allCards.forEach(card => {
+                            if (card !== markerCard) {
+                                card.classList.remove('expanded');
+                            }
+                        });
+                        // Toggle current card
+                        markerCard.classList.toggle('expanded');
+                    };
+                    
+                    markerHeader.innerHTML = `
+                        <div class="marker-number">${marker.number}</div>
+                        <div class="marker-content">
+                            ${marker.date ? `<div class="marker-date">${marker.date}</div>` : ''}
+                            <h3 class="marker-title">${marker.title}</h3>
+                            <p class="marker-description">${marker.description}</p>
+                        </div>
+                        <div class="marker-chevron">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    `;
+                    
+                    const markerDetails = document.createElement('div');
+                    markerDetails.className = 'marker-details';
+                    markerDetails.innerHTML = `
+                        <!-- Audio Guide Section -->
+                        <div class="marker-section">
+                            <div class="marker-section-header">
+                                <div class="marker-section-icon audio-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <polygon points="8 5 8 19 16 12 8 5" fill="white"/>
+                                    </svg>
+                                </div>
+                                <h4 class="marker-section-title">Audio Guide</h4>
+                            </div>
+                            <div class="audio-player-placeholder">
+                                <div class="audio-controls">
+                                    <div class="audio-play-button">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <polygon points="8 5 8 19 16 12 8 5" fill="white"/>
+                                        </svg>
+                                    </div>
+                                    <div class="audio-progress-bar">
+                                        <div class="audio-progress"></div>
+                                    </div>
+                                </div>
+                                <p class="audio-coming-soon">Audio guide coming soon</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Transcription Section -->
+                        <div class="marker-section">
+                            <div class="marker-section-header">
+                                <div class="marker-section-icon transcription-icon"></div>
+                                <h4 class="marker-section-title">Transcription</h4>
+                            </div>
+                            <div class="transcription-content">
+                                ${marker.number === 1 ? '<p>Welcome to Bradford, Pennsylvania.<br>A city that never planned to be great, but suddenly became important.<br>A city where under your feet is oil, in your pocket a Zippo, and around you – the forest that remembers more than people do.<br>If you\'re expecting skyscrapers—relax.<br>Here, history doesn\'t shout.<br>It speaks calmly, but very confidently.<br>Let\'s go.</p>' : marker.number === 2 ? '<p>Picture the year 1823.<br>No coffee shops.<br>No roads.<br>No plan.<br>There is forest. A lot of forest.<br>And there are a few families who decided:<br>"Well… let\'s try living here."<br>Bradford didn\'t begin as a dream—it began as a necessity.<br>People cut down trees, built houses, kept warm, survived.<br>No one was thinking about oil.<br>No one was thinking about the future.<br>The task was simple: survive the winter.<br>The city\'s first name was Littleton.<br>Small. Modest. Almost toy-like.<br>And everything would have been fine—if a couple of decades later huge money hadn\'t started being made here.<br>In 1854, the residents looked around and realized:<br>— We are no longer "little."<br>— We need a more serious name.<br>That\'s how Bradford appeared.<br>And this name withstood everything that came next.<br>You\'ll learn more at the next checkpoint.</p>' : marker.number === 3 ? '<p>Imagine mid-19th-century Bradford.<br>Roads are mud.<br>Houses are wood.<br>Smell is a mix of forest, smoke, and ambition.<br>And on March 12, 1858, the city gets its first newspaper: <em>The Bradford Miner</em>.<br>This wasn\'t just paper with text.<br>This was the moment the city heard itself for the first time.<br>Only four pages—but everything important was there.<br>The printing press worked almost as hard as the oil pumps.<br>Information became power.<br>The newspaper wrote about everything:<br>• who bought land<br>• who went bankrupt<br>• who got into a saloon fight<br>• where oil was found<br>• and who "promised mountains of gold again"<br><em>The Bradford Miner</em> was like Facebook + a Telegram channel + bar counter gossip.<br>If you were written about—you existed.<br>If not—it was as if you didn\'t.<br>From this moment on, Bradford stopped being just a dot on the map and became a community with character.</p>' : marker.number === 4 ? '<p>(Yes, next to McDonald\'s)<br>If the oil industry had a birthplace—you would be standing right here when you ordered your cheeseburger.<br>In front of you is the image of Cline Well No. 1—the first oil well in the Bradford area.<br>It was drilled in 1865.<br>And here\'s what\'s truly amazing:<br>it still pumps oil.<br>Now.<br>Today.<br>Right this moment.<br>More than 150 years later.<br>Very few things can say they\'ve been doing their job for a century and a half—and are still needed.<br>And the most beautiful part?<br>It stands right next to a McDonald\'s drive thru.<br>Imagine this:<br>you\'re ordering a Big Mac, and a few meters away—living history of the Industrial Revolution.<br>This is Bradford in its purest form:<br>past and present standing in the same line.<br>Notice how modest the well looks.<br>No skyscrapers.<br>No neon signs.<br>No high tech.<br>And that\'s the whole point.<br>History doesn\'t always look loud.<br>Sometimes it just keeps quietly working day after day, decade after decade.<br>Not shouting about its importance.<br>Just pumping oil.<br>Cline Well No. 1 is a reminder that:<br>• big industries begin with simple decisions<br>• technology can outlive generations<br>• and even the most ordinary things in our lives were once radical innovations</p>' : marker.number === 5 ? '<p>Now imagine a sharp plot twist.<br>1871. People drill the ground—and suddenly it starts producing money.<br>A lot of money.<br>Very much a lot.<br>Oil.<br>Black.<br>Thick.<br>Valuable.<br>The Bradford Oil Field opens—one of the most productive oil fields of its time.<br>People arrive:<br>• on foot<br>• in wagons<br>• with one suitcase<br>• with empty pockets<br>• and eyes full of greedy hope<br>America doesn\'t yet really know what a gas station is, but Bradford is already bathing in oil.<br>This was one of the richest oil fields in the world.<br>Not "pretty good."<br>But so rich that people abandoned homes, families, professions and came here because:<br>"If you don\'t get rich in Bradford—you won\'t get rich anywhere."<br>In the city:<br>• wells were drilled right in backyards<br>• oil flowed through the streets<br>• the ground literally oozed money<br>And yes—sometimes it caught fire.<br>Because safety regulations back then were… philosophical.<br>In just a few years, Bradford turns from a forest settlement into a global energy center.<br>This is not an exaggeration.<br>At one point, up to 75% of the world\'s oil was produced here.<br>A small city but a global impact.</p>' : marker.number === 6 ? '<p>Now imagine people who were lumberjacks yesterday—and millionaires today.<br>What do they do?<br>They build.<br>Fast.<br>Boldly.<br>Sometimes stupidly.<br>The city grows chaotically, aggressively, without brakes.<br>Hotels.<br>Theaters.<br>Banks.<br>Bradford\'s oil barons were the rock stars of their era.<br>They:<br>• built palaces<br>• rode in carriages with personal drivers<br>• threw parties that made the city shake<br>Some of those houses still stand today.<br>And if walls could talk, they would say:<br>"Here, expensive wine was drunk while oil flowed like a river."<br>At the same time, Bradford was dirty, loud, and very expensive.<br>Forget postcards.<br>The streets were:<br>• covered in soot<br>• flooded with oil<br>• filled with shouting, horses, steam machines, and swearing<br>Living here was more expensive than in New York.<br>A room—priced like a mansion.<br>Coffee—priced like gold.<br>Why?<br>Because everyone was either rich—or hoped to be rich tomorrow.<br>This was a city of people without a Plan B.<br>A city where luck mattered more than education.<br>Bradford\'s stories are stories of sudden rises.<br>This was a time when "getting rich overnight" was not a metaphor, but a real plan.<br>A person could go to bed an ordinary worker and wake up:<br>• the owner of an oil well<br>• a millionaire<br>• or bankrupt, because the oil suddenly ran out<br>NOT JUST OIL, BUT LUXURY<br>And an important detail.<br>This oil was special—Pennsylvania Grade Crude.<br>Clean.<br>High-quality.<br>Ideal for machines, mechanisms, the future.<br>If Texas is mass production, Bradford is the premium segment.</p>' : marker.number === 7 ? '<p>1879. Bradford officially becomes a city.<br>Money—yes.<br>Ambition—yes.<br>Common sense—slightly less than ideal.<br>When people have money and boldness, they allow themselves not only luxury, but experiments.<br>Sometimes—too bold.<br>One of those overly bold ideas was the experimental monorail nicknamed "Peg Leg."<br>One of the first in the United States.<br>Sounds cool.<br>In practice… not so much.<br>January 28, 1879:<br>• a boiler explosion<br>• six people killed<br>• the project closed forever<br>This was the moment Bradford realized:<br>technology is good—but physics deserves respect.<br>Innovation is good—but safety is more important than ambition.<br>The city grew up.<br>But the spirit of invention didn\'t disappear.<br>Someone here was always improving something—not for fame, but for practicality.<br>And from this environment, something very interesting—and globally famous—would later be born.</p>' : marker.number === 8 ? '<p>Bradford\'s architecture is oil frozen into building form.<br>Massive.<br>Confident.<br>Without unnecessary modesty.<br>Walking downtown, you see buildings from the late 19th century.<br>They\'re not pretending to be old.<br>They are old—and officially historic.<br>Almost everything is red, brown, sometimes nearly black brick.<br>This wasn\'t style for style\'s sake.<br>In the second half of the 19th century, Bradford grew faster than builders could keep up.<br>Homes, warehouses, banks, hotels were needed—immediately and in bulk.<br>Brick was perfect:<br>• cheap<br>• durable<br>• fire-resistant<br>No one was trying to look elegant.<br>They were trying to survive—and make money.<br>That\'s why Bradford\'s architecture is:<br>• massive facades<br>• straight lines<br>• minimal decoration<br>• buildings that seem to say: "We\'re here for the long haul."<br>Many buildings were constructed by the same contractors using similar plans.<br>That\'s why the city feels cohesive—almost industrially neat.<br>Notice the windows.<br>They\'re often taller than seems necessary.<br>This comes from the pre-electricity era—buildings were designed to let in as much daylight as possible.<br>People worked, read, counted money by sunlight.<br>And here\'s the important part:<br>this brick ages beautifully.<br>It darkens, shows time—but doesn\'t fall apart.<br>That\'s why Bradford feels not like a museum, but like a city with memory.<br>The past isn\'t erased—it\'s built into the present.<br>Today, many former factories and offices are:<br>• apartments<br>• galleries<br>• offices<br>• cafés and studios<br>The city\'s architecture doesn\'t try to please—and that\'s its strength.<br>Bradford isn\'t a postcard city.<br>It\'s a city of texture.<br>A city of brick that survived oil fever, industrial boom—and still stands.<br>Bradford isn\'t genius ideas scribbled on napkins.<br>It\'s:<br>• practicality<br>• convenience<br>• "as long as it works"</p>' : marker.number === 9 ? '<p>Zippo is Bradford\'s most famous export.<br>And now—a legend.<br>The lighter known all over the world was born right here.<br>1932.<br>The Great Depression.<br>The country is saving every cent and thinking how to survive.<br>And at exactly this moment, Zippo Manufacturing Company appears in Bradford.<br>Romance?<br>No.<br>Practicality?<br>Yes.<br>Founder George Blaisdell looks at an Austrian lighter and thinks:<br>"Good idea. Poor execution."<br>So what does he do?<br>• improves the design<br>• adds a hinge<br>• makes it work in the wind<br>And most importantly—gives it a lifetime guarantee.<br>Bold?<br>Insane.</p>' : marker.number === 10 ? '<p>Now—attention.<br>We\'re leaving the ground. Literally.<br>The 1920s.<br>America is in love with the sky.<br>Airplanes are the Teslas of their time.<br>And in this atmosphere, Bradford\'s story welcomes the Taylor Brothers Aircraft Manufacturing Company.<br>The Taylor brothers wanted to make aviation simpler and accessible to everyone.<br>They designed light, single-engine planes—"cars for the sky."<br>Small.<br>Simple.<br>Affordable.<br>Not a huge factory.<br>A workshop that smelled of:<br>• oil<br>• wood<br>• boldness<br>One investor was William T. Piper—an oil man by training, but with a deep passion for aviation.<br>He believed in one simple, brilliant idea:<br>planes shouldn\'t be only for the military or millionaires, but for ordinary people.<br>In 1929, production moves to Bradford.<br>Why?<br>Because here:<br>• there was money<br>• there were skilled hands<br>• and a city unafraid of the new<br>On November 1, 1937, a name appears that\'s still known today: Piper Aircraft Corporation.<br>They built the Taylor E-2 Cub—an early version of what we now know as the legendary Piper Cub, one of the most famous light aircraft of all time.<br>The road wasn\'t easy.<br>In 1930 the company went bankrupt.<br>William Piper bought the assets for just $761.<br>They tried to continue production.<br>Then in 1937, a fire destroyed the Bradford factory.<br>That could have been the end.<br>But Piper didn\'t give up.<br>Production moved to Lock Haven, Pennsylvania.<br>The aircraft born here became Piper Aircraft—and then Piper Cub.<br>And it became a huge success.<br>So imagine this:<br>a small city that started with oil suddenly becomes part of global aviation history.<br>Not bad for a place that used to drill the ground, right?</p>' : marker.number === 11 ? '<p>The first Zippo lighter is released.<br>That sound—the "click"—becomes iconic.<br>It\'s not just a sound.<br>It\'s a gesture.<br>Soldiers in World War II:<br>• light cigarettes<br>• survive<br>• come home<br>…and bring Zippos with them.<br>Suddenly, Bradford ends up in the pockets of millions of people around the world.<br>That\'s how a small city becomes a global symbol.<br>And yes—if you own a Zippo, technically, you own a piece of this city.<br>Today, Bradford has a Zippo Museum—and people really do come from all over the world.<br>Because history isn\'t always palaces.<br>Sometimes it\'s a small metal object that was there during important moments of life.<br><br><strong>THE NEON THAT BECAME THE HEART OF DOWNTOWN</strong><br><br>Later in 1950, the Main Street lights up.<br>The iconic Zippo neon sign—<br>huge<br>bright<br>confident.<br>It doesn\'t just advertise.<br>It says:<br>"We are still here. And we shine."<br>If you haven\'t seen this sign—you haven\'t seen Bradford.</p>' : marker.number === 12 ? '<p>A sharp scene change.<br>Silence.<br>Curtain.<br>The orchestra tunes.<br>Marilyn Horne is born in Bradford—one of the greatest mezzo-sopranos of the 20th century.<br>Imagine it:<br>a city of oil, metal, and noise gives the world a voice that freezes opera halls.<br>Horne had a rare range and almost acrobatic technique.<br>Her voice wasn\'t just beautiful—it was powerful, flexible, daring.<br>What was a limit for others was warm-up for her.<br>Rossini, Handel, Bellini—composers once considered "too difficult"—returned to world stages largely because of her.<br>Fun fact:<br>In <em>Carmen Jones</em>, Marilyn Monroe appears on screen—but Marilyn Horne sings.<br>Hollywood\'s face and opera\'s voice in one frame.<br>Horne was never just a diva.<br>She fought—for music, for quality, for meaning.<br>She said opera must be honest—and proved it every night on stage.<br>She founded the Marilyn Horne Foundation to support young musicians—not with glamour, but with substance.<br>Here\'s the Bradford paradox:<br>a city used to working with its hands raised someone who worked with her voice—and changed global opera.<br>So as you walk these streets, remember:<br>great voices aren\'t always born in capitals, but in cities that simply do their work honestly.</p>' : marker.number === 13 ? '<p>May 8, 1938.<br>Mother\'s Day.<br>Spring in Bradford.<br>A park.<br>Families.<br>Children running between benches.<br>A normal day—warm, calm, ordinary.<br>And then Marjorie West disappears.<br>She is four years old.<br>No witnesses who saw anything wrong.<br>No clear moment when the day broke.<br>No trace that leads anywhere solid.<br>Searches follow.<br>Questions.<br>Hope.<br>Then silence.<br>Marjorie West is never found.<br>What\'s striking is not just the disappearance—but how the city treats it.<br>This story was never turned into a spectacle.<br>No myths built around it.<br>No dramatic retellings for attention.<br>People here talk about it:<br>carefully.<br>quietly.<br>with respect.<br>Not because they are afraid—but because some stories are not meant to be solved out loud.<br>This is the shadow side of Bradford\'s history.<br>A reminder that even in a city built on oil, industry, ambition, and invention—there are moments where progress stops, and humanity takes precedence.<br>Not every story has a conclusion.<br>Not every loss becomes history with an answer.<br>Some things remain unresolved.<br>And the city remembers—not loudly, not publicly—but honestly.<br>That silence you might feel here?<br>It\'s not emptiness.<br>It\'s remembrance.</p>' : marker.number === 14 ? '<p>When oil stopped being the center of everything, education became the new anchor.<br>University of Pittsburgh at Bradford brought youth, motion, and life back to the city.<br>Planes used to take off here.<br>Now—careers and ideas do.<br>Picture early-1960s Bradford.<br>The oil era is past its peak.<br>Factories still run—but the future feels foggy.<br>And in 1963, something quiet but powerful happens:<br>University of Pittsburgh at Bradford opens.<br>That matters.<br>Because a university isn\'t just buildings.<br>It\'s:<br>• young people with questions<br>• new ideas<br>• noise, laughter, life after 6 PM<br>Before, Bradford was a city where:<br>"people work, then go home."<br>With the university, it becomes a city where:<br>"people argue, discuss, stay late."<br>The city starts thinking out loud.<br>April 18, 1967.<br>The campus is built on the former Harri Emery Airport runway.<br>Think about that image:<br>• planes used to take off here<br>• now ideas do<br>Under campus paths lies memory of landing gear wheels.<br>Above—students with books, coffee, and life plans.<br>If something stops flying physically—Bradford makes it fly intellectually.</p>' : marker.number === 15 ? '<p>1997.<br>Bradford Refinery is sold for… $1.<br>Not a million.<br>Not a hundred thousand.<br>One dollar.<br>Why?<br>Because this wasn\'t a deal—it was trust.<br>American Refining Group bought the refinery not for paper profits, but for:<br>• jobs<br>• the city\'s economy<br>• continuation of history<br>The refinery still operates.<br>Not as a relic—but as part of the present.<br>Sometimes one dollar decides a city\'s fate.</p>' : marker.number === 16 ? '<p>August 31, 2000.<br>A new century.<br>A new millennium.<br>Downtown Bradford is added to the National Register of Historic Places.<br>What does that mean in human terms?<br>It means the city:<br>• doesn\'t demolish old buildings<br>• doesn\'t erase traces of the past<br>• doesn\'t pretend to be "new"<br>It says:<br>"Yes. This is who we were. And we\'re proud of it."<br>The bricks remain.<br>The facades are preserved.<br>History isn\'t hidden.</p>' : marker.number === 17 ? '<p>2003.<br>A tornado.<br>Kinzua Viaduct collapses.<br>For many cities, this would be the end.<br>Here—the ruins were left to speak.<br>In 2011, Kinzua Sky Walk opens.<br>A walk into emptiness.<br>Glass beneath your feet.<br>The gorge below.<br>Broken bridge ahead.<br>It doesn\'t say "look how beautiful."<br>It says: "this happens."<br>In 2017, <em>Culture Trip</em> lists it among the world\'s Top-10 skywalks.<br>No fireworks.<br>No drama.<br>Just quiet pride.</p>' : marker.number === 18 ? '<p>Bradford isn\'t perfect.<br>It fell.<br>It rose.<br>It changed.<br>It has been a place of ambition and missteps, of sudden wealth and sudden loss.<br>It learned by building, by failing, by starting again.<br>What you see now is not a finished story.<br>It\'s a city still in motion—quietly adapting, holding on to what matters, letting go of what no longer works.<br>But it\'s real.<br>Real in its streets and brickwork.<br>Real in the way the past is not erased but carried forward.<br>Real in the way history here doesn\'t try to impress—it simply exists.<br>Thank you for walking this path.<br>You didn\'t pass through a legend.<br>You walked through lived time.<br>And if you listen closely, Bradford doesn\'t tell myths or fairy tales.<br>It tells life—honestly, and without pretending it was ever simple.</p>' : `<p>${marker.description}</p>`}
+                            </div>
+                        </div>
+                        
+                        <!-- Historical Images Section -->
+                        <div class="marker-section">
+                            <div class="marker-section-header">
+                                <div class="marker-section-icon images-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2" fill="none"/>
+                                        <circle cx="8.5" cy="8.5" r="1.5" fill="white"/>
+                                        <path d="M21 15L16 10L5 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <h4 class="marker-section-title">Historical Images</h4>
+                            </div>
+                            <div class="images-gallery">
+                                ${marker.number === 10 ? '<div class="gallery-image-placeholder"><img src="images/pathPic4.png" alt="Historical image" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>' : '<div class="gallery-image-placeholder"><div class="gallery-image-box"></div></div>'}
+                            </div>
+                        </div>
+                        
+                        <!-- Marker Location Section -->
+                        <div class="marker-section">
+                            <div class="marker-section-header">
+                                <div class="marker-section-icon map-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" stroke="white" stroke-width="2" fill="none"/>
+                                        <circle cx="12" cy="10" r="3" stroke="white" stroke-width="2" fill="none"/>
+                                    </svg>
+                                </div>
+                                <h4 class="marker-section-title">Marker Location</h4>
+                            </div>
+                            <div class="map-placeholder">
+                                <div class="map-container">
+                                    <div class="map-content">Map view coming soon</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    markerCard.appendChild(markerHeader);
+                    markerCard.appendChild(markerDetails);
+                    markersList.appendChild(markerCard);
+                });
+            }
+            
+            // Initial display
+            displayMarkers(markers);
+            
+            // Search functionality
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const filtered = markers.filter(marker => 
+                    marker.title.toLowerCase().includes(searchTerm) ||
+                    marker.description.toLowerCase().includes(searchTerm) ||
+                    (marker.date && marker.date.toLowerCase().includes(searchTerm))
+                );
+                displayMarkers(filtered);
+            });
+        });
+    </script>
+</body>
+</html>
