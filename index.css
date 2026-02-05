@@ -1735,21 +1735,34 @@ body {
 
     .story-image {
         aspect-ratio: 4/3;
+        overflow: visible !important;
     }
 
     .story-quote {
-        bottom: 0.5rem;
-        left: 0.5rem;
-        max-width: calc(100% - 1rem);
-        padding: 1rem;
+        bottom: calc(0.5rem - 10px) !important;
+        left: calc(0.5rem - 10px) !important;
+        max-width: 64% !important;
+        padding: 0.9rem !important;
+        aspect-ratio: 2/1 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    .story-quote::before {
+        top: -8px !important;
+        left: -8px !important;
+        right: -8px !important;
+        bottom: -8px !important;
+        border-radius: 18px !important;
     }
 
     .quote-text {
-        font-size: 0.85rem;
+        font-size: 8px !important;
+        line-height: 1.2 !important;
     }
 
     .quote-author {
-        font-size: 0.7rem;
+        font-size: 6px !important;
     }
 
     .nonprofit-mission {
@@ -1950,6 +1963,40 @@ body {
     }
 }
 
+/* Extra Small Phones */
+@media (max-width: 480px) {
+    .story-image {
+        overflow: visible !important;
+    }
+    
+    .story-quote {
+        bottom: calc(0.5rem - 10px) !important;
+        left: calc(0.5rem - 10px) !important;
+        max-width: 45% !important;
+        padding: 0.75rem !important;
+        aspect-ratio: 2/1 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    .story-quote::before {
+        top: -8px !important;
+        left: -8px !important;
+        right: -8px !important;
+        bottom: -8px !important;
+        border-radius: 18px !important;
+    }
+
+    .quote-text {
+        font-size: 8px !important;
+        line-height: 1.2 !important;
+    }
+
+    .quote-author {
+        font-size: 6px !important;
+    }
+}
+
 /* About Us Page Styles */
 .about-hero {
     position: relative;
@@ -2107,12 +2154,12 @@ body {
 .story-quote::before {
     content: '';
     position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 18px;
     z-index: 0;
 }
 
@@ -2124,7 +2171,7 @@ body {
     right: 0;
     bottom: 0;
     background-color: #F07A55;
-    border-radius: 10px;
+    border-radius: 12px;
     z-index: 1;
 }
 
