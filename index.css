@@ -2679,6 +2679,8 @@ body {
     height: 300px;
     background-color: #2E6B2D;
     border-radius: 12px;
+    object-fit: cover;
+    display: block;
 }
 
 .contact-grid {
@@ -2952,6 +2954,29 @@ body {
     color: #6b7280;
     margin-bottom: 2rem;
     line-height: 1.6;
+}
+
+.contact-us-details {
+    margin-top: 1rem;
+    color: #374151;
+    line-height: 1.8;
+}
+
+.contact-us-details .contact-detail {
+    margin-bottom: 0.5rem;
+}
+
+.contact-us-details .contact-detail:last-child {
+    margin-bottom: 0;
+}
+
+.contact-us-details a {
+    color: #F07A55;
+    text-decoration: none;
+}
+
+.contact-us-details a:hover {
+    text-decoration: underline;
 }
 
 .involved-buttons {

@@ -4,15 +4,15 @@ function getHistoricalMarkers() {
         {
             number: 1,
             date: "WELCOME",
-            title: "HOW IT ALL STARTED",
-            description: "A city that never planned to be great — and then suddenly became important.",
+            title: "HOW IT ALL BEGAN",
+            description: "Welcome to Bradford, Pennsylvania. A city that never planned to be great but suddenly became important.",
             id: 1
         },
         {
             number: 2,
             date: "1823",
             title: "FOREST, SILENCE, AND SURVIVAL",
-            description: "The beginning — just forest, families, and survival.",
+            description: "Picture the year 1823. No coffee shops. No roads. No plan. There is forest. A lot of forest.",
             id: 2
         },
         {
@@ -59,73 +59,66 @@ function getHistoricalMarkers() {
         },
         {
             number: 9,
-            date: "LATE 1800S",
-            title: "ZIPPO — SIMPLE, RELIABLE, FOREVER",
-            description: "ZIPPO — let there be light!",
+            date: "1920S-1937",
+            title: "WHEN BRADFORD DECIDED TO TAKE OFF",
+            description: "Aviation comes to Bradford — the birth of Piper Aircraft.",
             id: 9
         },
         {
             number: 10,
-            date: "1920S-1937",
-            title: "WHEN BRADFORD DECIDED TO TAKE OFF",
-            description: "Aviation comes to Bradford — the birth of Piper Aircraft.",
+            date: "1932-1933",
+            title: "THE CLICK HEARD AROUND THE WORLD",
+            description: "The iconic lighter is born in Bradford.",
             id: 10
         },
         {
             number: 11,
-            date: "1932-1933",
-            title: "THE CLICK HEARD AROUND THE WORLD",
-            description: "The iconic lighter is born in Bradford.",
+            date: "1934",
+            title: "WHEN BRADFORD SANG",
+            description: "January 16, 1934 — Marilyn Horne is born.",
             id: 11
         },
         {
             number: 12,
-            date: "1934",
-            title: "WHEN BRADFORD SANG",
-            description: "January 16, 1934 — Marilyn Horne is born.",
+            date: "1938",
+            title: "THE MYSTERY THAT STILL MAKES THIS PLACE GO QUIET",
+            description: "May 8, 1938 — A Mother's Day mystery that haunts Bradford.",
             id: 12
         },
         {
             number: 13,
-            date: "1938",
-            title: "THE MYSTERY THAT STILL MAKES THIS PLACE GO QUIET",
-            description: "May 8, 1938 — A Mother's Day mystery that haunts Bradford.",
+            date: "1963-1967",
+            title: "A CAMPUS ON AN AIRPORT RUNWAY",
+            description: "Campus on the site of an airport — where ideas now take off.",
             id: 13
         },
         {
             number: 14,
-            date: "1963-1967",
-            title: "A CAMPUS ON AN AIRPORT RUNWAY",
-            description: "Campus on the site of an airport — where ideas now take off.",
+            date: "1997",
+            title: "A REFINERY FOR ONE DOLLAR",
+            description: "An act of trust that saved an industry.",
             id: 14
         },
         {
             number: 15,
-            date: "1997",
-            title: "A REFINERY FOR ONE DOLLAR",
-            description: "An act of trust that saved an industry.",
+            date: "2000",
+            title: "OFFICIALLY HISTORIC",
+            description: "August 31, 2000 — Downtown Bradford joins the National Register.",
             id: 15
         },
         {
             number: 16,
-            date: "2000",
-            title: "OFFICIALLY HISTORIC",
-            description: "August 31, 2000 — Downtown Bradford joins the National Register.",
+            date: "2003-2017",
+            title: "KINZUA: WHEN NATURE WINS",
+            description: "From tornado destruction to one of the world's most beautiful skywalks.",
             id: 16
         },
         {
             number: 17,
-            date: "2003-2017",
-            title: "KINZUA: WHEN NATURE WINS",
-            description: "From tornado destruction to one of the world's most beautiful skywalks.",
-            id: 17
-        },
-        {
-            number: 18,
             date: "NOW",
             title: "A CITY WITH CHARACTER",
             description: "Bradford today — real, resilient, and authentic.",
-            id: 18
+            id: 17
         }
     ];
 }
