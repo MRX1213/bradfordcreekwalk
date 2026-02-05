@@ -18,28 +18,28 @@ function getHistoricalMarkers() {
         {
             number: 3,
             date: "1854",
-            title: "LITTLETON BECOMES BRADFORD",
+            title: "THE FIRST NEWSPAPER — THE CITY STARTS TALKING",
             description: "From a modest name to something more serious.",
             id: 3
         },
         {
             number: 4,
             date: "1858",
-            title: "THE FIRST NEWSPAPER: THE CITY STARTS TALKING",
+            title: "THE WELL THAT STILL WORKS",
             description: "March 12, 1858 — The Bradford Miner begins publishing.",
             id: 4
         },
         {
             number: 5,
             date: "1865",
-            title: "THE WELL THAT'S STILL WORKING",
+            title: "OIL. THE THING THAT CHANGED EVERYTHING",
             description: "Cline Well No. 1 — still pumping after 150+ years.",
             id: 5
         },
         {
             number: 6,
             date: "1871",
-            title: "OIL. THE THING THAT CHANGED EVERYTHING",
+            title: "WHEN MONEY COMES TOO FAST",
             description: "The Bradford Oil Field opens — one of the richest in the world.",
             id: 6
         },
@@ -53,15 +53,15 @@ function getHistoricalMarkers() {
         {
             number: 8,
             date: "LATE 1800S",
-            title: "WHEN MONEY COMES TOO FAST",
+            title: "BRICK THAT SPEAKS ABOUT MONEY",
             description: "The oil boom era — rapid growth, chaos, and fortunes.",
             id: 8
         },
         {
             number: 9,
             date: "LATE 1800S",
-            title: "BRICK THAT SPEAKS ABOUT MONEY",
-            description: "Bradford's architecture — oil frozen into buildings.",
+            title: "ZIPPO — SIMPLE, RELIABLE, FOREVER",
+            description: "ZIPPO — let there be light!",
             id: 9
         },
         {
@@ -74,7 +74,7 @@ function getHistoricalMarkers() {
         {
             number: 11,
             date: "1932-1933",
-            title: "ZIPPO: SIMPLE, RELIABLE, FOREVER",
+            title: "THE CLICK HEARD AROUND THE WORLD",
             description: "The iconic lighter is born in Bradford.",
             id: 11
         },
@@ -88,14 +88,14 @@ function getHistoricalMarkers() {
         {
             number: 13,
             date: "1938",
-            title: "THE MARJORIE WEST DISAPPEARANCE",
+            title: "THE MYSTERY THAT STILL MAKES THIS PLACE GO QUIET",
             description: "May 8, 1938 — A Mother's Day mystery that haunts Bradford.",
             id: 13
         },
         {
             number: 14,
             date: "1963-1967",
-            title: "THE UNIVERSITY: A SECOND BREATH",
+            title: "A CAMPUS ON AN AIRPORT RUNWAY",
             description: "Campus on the site of an airport — where ideas now take off.",
             id: 14
         },
