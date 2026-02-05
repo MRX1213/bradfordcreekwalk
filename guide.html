@@ -231,8 +231,8 @@
                                 <h4 class="marker-section-title">Audio Guide</h4>
                             </div>
                             <div class="audio-player-placeholder">
-                                ${marker.number === 2 ? `
-                                    <audio id="audio-${marker.number}" src="audio/card2.mp3"></audio>
+                                ${[1, 2, 3, 4, 5, 6].includes(marker.number) ? `
+                                    <audio id="audio-${marker.number}" src="audio/card${marker.number}.mp3"></audio>
                                     <div class="audio-controls">
                                         <div class="audio-play-button" onclick="toggleAudio(${marker.number})" id="play-btn-${marker.number}">
                                             <svg id="play-icon-${marker.number}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
