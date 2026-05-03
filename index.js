@@ -17,28 +17,28 @@ function getHistoricalMarkers() {
         },
         {
             number: 3,
-            date: "1854",
+            date: "1858",
             title: "THE FIRST NEWSPAPER — THE CITY STARTS TALKING",
             description: "From a modest name to something more serious.",
             id: 3
         },
         {
             number: 4,
-            date: "1858",
+            date: "1865",
             title: "THE WELL THAT STILL WORKS",
-            description: "March 12, 1858 — The Bradford Miner begins publishing.",
+            description: "March 12, 1865 — The Bradford Miner begins publishing.",
             id: 4
         },
         {
             number: 5,
-            date: "1865",
+            date: "1871",
             title: "OIL. THE THING THAT CHANGED EVERYTHING",
             description: "Cline Well No. 1 — still pumping after 150+ years.",
             id: 5
         },
         {
             number: 6,
-            date: "1871",
+            date: "1871-1878",
             title: "WHEN MONEY COMES TOO FAST",
             description: "The Bradford Oil Field opens — one of the richest in the world.",
             id: 6
@@ -108,7 +108,7 @@ function getHistoricalMarkers() {
         },
         {
             number: 16,
-            date: "2003-2017",
+            date: "2011-2017",
             title: "KINZUA: WHEN NATURE WINS",
             description: "From tornado destruction to one of the world's most beautiful skywalks.",
             id: 16

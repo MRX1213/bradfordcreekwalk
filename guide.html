@@ -100,7 +100,7 @@
                 <div class="footer-column">
                     <h4>CONNECT</h4>
                     <p>Bradford, Pennsylvania</p>
-                    <p><a href="mailto:nam426@pitt.edu">nam426@pitt.edu</a></p>
+                    <p><a href="mailto:contact@bradfordcreekwalk.org">contact@bradfordcreekwalk.org</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -231,7 +231,7 @@
                                 <h4 class="marker-section-title">Audio Guide</h4>
                             </div>
                             <div class="audio-player-placeholder">
-                                ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].includes(marker.number) ? `
+                                ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17].includes(marker.number) ? `
                                     <audio id="audio-${marker.number}" src="audio/card${marker.number}.mp3"></audio>
                                     <div class="audio-controls">
                                         <div class="audio-play-button" onclick="toggleAudio(${marker.number})" id="play-btn-${marker.number}">
@@ -288,7 +288,43 @@
                                 <h4 class="marker-section-title">Historical Images</h4>
                             </div>
                             <div class="images-gallery">
-                                ${marker.number === 9 ? '<div class="gallery-image-placeholder"><img src="images/pathPic4.png" alt="Historical image" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>' : '<div class="gallery-image-placeholder"><div class="gallery-image-box"></div></div>'}
+                            ${
+                                marker.number === 1
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact1_pic.png" alt="Historical image for fact 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 2
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact2_pic.png" alt="Historical image for fact 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 3
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact3_pic.png" alt="Historical image for fact 3" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 4
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact4_pic_3.jpg" alt="Historical image for fact 4" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 5
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact5_pic.jpg" alt="Historical image for fact 5 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact5_pic_2.jpg" alt="Historical image for fact 5 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 6
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact6_pic.jpg" alt="Historical image for fact 6" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 7
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact7_pic_1.jpg" alt="Historical image for fact 7 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact7_pic_2.jpg" alt="Historical image for fact 7 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 8
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact8_pic_1.jpg" alt="Historical image for fact 8 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact8_pic_2.jpg" alt="Historical image for fact 8 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 9
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact9_pic_1.jpg" alt="Historical image for fact 9 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact9_pic_2.jpg" alt="Historical image for fact 9 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 10
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact10_pic_1.JPG" alt="Historical image for fact 10 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact10_pic_2.JPG" alt="Historical image for fact 10 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact10_pic_3.JPG" alt="Historical image for fact 10 - 3" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 11
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Merlin_H_1.JPG" alt="Marilyn Horne historical image 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Merlin_H_2.JPG" alt="Marilyn Horne historical image 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Merlin_H_3.JPG" alt="Marilyn Horne historical image 3" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 12
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact12_pic_1.avif" alt="Historical image for fact 12" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 13
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact13_pic_1.jpg" alt="Historical image for fact 13 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact13_pic_2.jpg" alt="Historical image for fact 13 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact13_pic_3.jpg" alt="Historical image for fact 13 - 3" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 14
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact14_pic_1.jpg" alt="Historical image for fact 14 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact14_pic_2.jpg" alt="Historical image for fact 14 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 15
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact15_pic.webp" alt="Historical image for fact 15" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 16
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact16_pic_1.jpg" alt="Historical image for fact 16 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact16_pic_2.jpg" alt="Historical image for fact 16 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact16_pic_3.jpg" alt="Historical image for fact 16 - 3" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : marker.number === 17
+                                    ? '<div class="gallery-image-placeholder"><img src="images/Fact17_pic_1.png" alt="Historical image for fact 17 - 1" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact17_pic_2.jpg" alt="Historical image for fact 17 - 2" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div><div class="gallery-image-placeholder"><img src="images/Fact17_pic_3.webp" alt="Historical image for fact 17 - 3" class="gallery-image-box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>'
+                                    : '<div class="gallery-image-placeholder"><div class="gallery-image-box"></div></div>'
+                            }
                             </div>
                         </div>
                         
@@ -305,7 +341,7 @@
                             </div>
                             <div class="map-placeholder">
                                 <div class="map-container">
-                                    <div class="map-content">Map view coming soon</div>
+                                    <img src="images/Map-Signs/map${marker.number}.png" alt="Location map for historical marker ${marker.number}" class="map-image">
                                 </div>
                             </div>
                         </div>
